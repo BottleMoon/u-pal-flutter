@@ -1,16 +1,3 @@
 # u_pal
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+펜팔 + SNS 프로젝트. 프론트도 제대로 해보려고 미흡하지만 provider를 사용해 상태관리를 하고 mvvm 아키텍처로 설계, 구현.
