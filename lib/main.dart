@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:provider/provider.dart';
+import 'package:u_pal/view/home_view.dart';
+import 'package:u_pal/view/signIn_view.dart';
+import 'package:u_pal/viewModel/auth_view_model.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(ChangeNotifierProvider(
+    create: (context) => AuthViewModel(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -11,12 +20,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+      home: Consumer<AuthViewModel>(
+        builder: (context, provider, child) {
+          return provider.isSignedIn ? const HomeView() : const SignInView();
+        },
       ),
-      home: OutlinedButton(onPressed: () {  },
-      child: Text("123")) ,
     );
   }
 }
