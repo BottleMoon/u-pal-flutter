@@ -4,17 +4,23 @@ import 'package:provider/provider.dart';
 import 'package:u_pal/view/home_view.dart';
 import 'package:u_pal/view/signIn_view.dart';
 import 'package:u_pal/viewModel/auth_view_model.dart';
+import 'package:u_pal/viewModel/country_view_model.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
-  runApp(ChangeNotifierProvider(
-    create: (context) => AuthViewModel(),
-    child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AuthViewModel()),
+        ChangeNotifierProvider(create: (context) => CountryViewModel())
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
 
   // This widget is the root of your application.
   @override
@@ -22,6 +28,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Consumer<AuthViewModel>(
         builder: (context, provider, child) {
+          context.read<CountryViewModel>().getCountriesFromCsv();
           return provider.isSignedIn ? const HomeView() : const SignInView();
         },
       ),

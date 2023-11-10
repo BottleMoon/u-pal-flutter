@@ -21,6 +21,23 @@ class DataSource {
 
     return null;
   }
+
+  void signUp(String email, String password, String nickname, int age,
+      String country) async {
+    Response res = await dio.post(dotenv.env['SIGN_UP_URL']!,
+        data: {
+          'email': email,
+          'password': password,
+          'nickname': nickname,
+          'age': age,
+          'country': country
+        },
+        options: Options(contentType: Headers.jsonContentType));
+  }
+
+// Future<bool> confirmEmail() async {
+//   //TODO: 이메일 인증
+// }
 }
 
 class CustomInterceptor extends Interceptor {

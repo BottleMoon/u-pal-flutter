@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:u_pal/view/signup_view.dart';
 import 'package:u_pal/viewModel/auth_view_model.dart';
 
 class SignInView extends StatefulWidget {
@@ -42,7 +43,12 @@ class _SignInViewState extends State<SignInView> {
               child: Text("Sign in")),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text("if y dont have account"),
-            TextButton(onPressed: () {}, child: Text("Sign up"))
+            TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const SingUpView()));
+                },
+                child: Text("Sign up"))
           ])
         ],
       ),
