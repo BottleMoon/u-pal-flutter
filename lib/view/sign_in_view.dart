@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:u_pal/view/signup_view.dart';
+import 'package:u_pal/view/sign_up_view.dart';
 import 'package:u_pal/viewModel/auth_view_model.dart';
 
 class SignInView extends StatefulWidget {
@@ -26,7 +26,7 @@ class _SignInViewState extends State<SignInView> {
 
   @override
   Widget build(BuildContext context) {
-    var modelView = Provider.of<AuthViewModel>(context);
+    var viewModel = Provider.of<AuthViewModel>(context);
     return Scaffold(
         body: Container(
       margin: EdgeInsets.all(10),
@@ -34,19 +34,22 @@ class _SignInViewState extends State<SignInView> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          TextField(onChanged: _onChangedId),
+          TextField(textAlign: TextAlign.center, onChanged: _onChangedId),
           TextField(
+              textAlign: TextAlign.center,
+              obscureText: true,
               onChanged: _onChangedPassword,
-              onSubmitted: (value) => {modelView.signIn(email, password)}),
+              onSubmitted: (value) => {viewModel.signIn(email, password)}),
+          SizedBox(height: 10),
           OutlinedButton(
-              onPressed: () => {modelView.signIn(email, password)},
+              onPressed: () => {viewModel.signIn(email, password)},
               child: Text("Sign in")),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Text("if y dont have account"),
+            Text("if you dont have account"),
             TextButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SingUpView()));
+                      builder: (context) => const SignUpView()));
                 },
                 child: Text("Sign up"))
           ])

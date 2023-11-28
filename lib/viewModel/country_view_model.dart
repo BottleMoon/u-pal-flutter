@@ -7,10 +7,11 @@ class CountryViewModel with ChangeNotifier {
   List<Country> _countries = [];
 
   void getCountriesFromCsv() async {
+    print("get countries list");
     var countries_csv = await rootBundle.loadString('lib/assets/countries.csv');
 
     List<List<dynamic>> csv =
-    CsvToListConverter(eol: "\n").convert(countries_csv);
+        CsvToListConverter(eol: "\n").convert(countries_csv);
 
     for (var c in csv.sublist(1)) {
       var country = Country(
